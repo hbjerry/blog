@@ -5,6 +5,7 @@
 
 ## 序
 (译者：streaming是指streaming引擎，比如：storm，spark streaming等；batch是指批处理引擎，常见的是MapReduce)
+
 尽管现在市场上对streaming越来越关注，但是相对于batch来说，大部分streaming系统还不是很成熟，所以streaming系统正处于积极开发和进步中。
 
 作为一个在分布式steaming系统上工作过5年的从业者（MillWeel, Cloud DataFlow）, 我非常荣幸给大家分享streaming系统能解决什么问题，以及batch系统和streaming系统在语义上的区别，这非常重要，会帮助我们更好地使用它。内容众多，我会分成两篇文章来讲述：
@@ -48,7 +49,7 @@
 
 随着streaming系统越来越成熟，它将提供一种无穷流处理的框架，并且让Lambda架构消失在历史中。我相信它已经在发生。如果我想彻底打败batch，我们需要完成两件事：
 
-1. **正确性**：这让streaming和batch能够等同。
+### **正确性**：这让streaming和batch能够等同。
 
 本质上，正确性取决于consistent一致的存储。steaming需要一种类似checkpointing持久化存储,正如Kreps在它这篇文字所写，这种存储在机器挂掉的情况也能保证一致性。当几年前Spark streaming首次出现时，它在streaming世界里就是一致性的代名词。一切都在向前发展，仍有很多streaming系统不提供强一致性，我实在是不理解为啥at-most-once仍然存在，但是实际情况它还在。（译者：如果at-most-once指的是系统保证这个消息最多被处理一次，其他方式是：at-least-once至少一次和exactly-once只有一次，作者想表达的是最多一次就是系统会丢数据，除非你不关心正确性，否则这种方式就不该存在。但实际是上实现三种方式的开销不一样，随着系统越来越成熟，可能三种开销就不会那么大，到那时候估计就没人愿意使用最多一次的方式了。）
 
@@ -56,7 +57,7 @@
 
 如果你真的想学习如何给streaming系统设计强一致性，我推荐你可以读读[MillWheel](http://static.googleusercontent.com/media/research.google.com/en//pubs/archive/41378.pdf)和[Spark Streaming](https://www.cs.berkeley.edu/~matei/papers/2012/hotcloud_spark_streaming.pdf)的论文，这两篇论文都花费了很长的时间讲述一致性。本文时间有限，就不在此详述了。 （译者：还没读，看完会给大家分享下）
 
-2. **时间工具**：这让我们 **超越** batch。
+### **时间工具**：这让streaming **超越** batch。
 
 当我们处理无穷无序数据时，时间工具是一切的基础。当前，越来越多的需求要求我们处理无穷无序数据，而现有batch系统（包括大多数streaming系统）都缺乏必要的工具去解决这个困难。我会用本文剩下的部分和下一篇文章着重解释它。（译者：无序是难点，大部分分布式系统都不可能提供顺序保证，这里时间工具是指系统提供api，让我们自己控制超时以及如何按时间分块，下面会有详述。）
 
