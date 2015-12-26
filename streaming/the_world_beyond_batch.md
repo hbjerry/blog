@@ -167,6 +167,7 @@ streaming从开始就是设计用来处理无穷数据，这跟大多数batch引
 我们会看看用processing time和event time去分窗口到达有什么不同，当然从processing time开始，因为它更常用。
 
 ** Processing time分块 **
+
 ![image](http://radar.oreilly.com/wp-files/2/2015/08/Post01_Fig09_ProcessingTimeWindowing.jpg)
 
 系统只需要保存来的数据直到一段时间完成。比如：5分钟分块，系统可以保存5分钟的数据，然后认为所有数据都到了，发给下游处理就行。
@@ -185,6 +186,7 @@ streaming从开始就是设计用来处理无穷数据，这跟大多数batch引
 我们希望这两个例子都是用event time分块，保证逻辑的正确性。
 
 ** Event time分块 **
+
 Event time分块能让我们观察到上游数据在事件发生时的情况，这是最正确的方法。但是，大多数数据处理系统都没能从语义很好的支持它，虽然我们知道任何强一致性的系统（Hadoop或者Spark Streaming）经过一些修改是能解决的。（译者：作者说从语义上支持就是系统能保证按Processing time分块，我常用的工具都没有这样的语义）
 
 下图显示了一个按event time分成一小时的块:
