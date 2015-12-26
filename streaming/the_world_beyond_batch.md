@@ -56,7 +56,7 @@
 
 如果你真的想学习如何给streaming系统设计强一致性，我推荐你可以读读[MillWheel](http://static.googleusercontent.com/media/research.google.com/en//pubs/archive/41378.pdf)和[Spark Streaming](https://www.cs.berkeley.edu/~matei/papers/2012/hotcloud_spark_streaming.pdf)的论文，这两篇论文都花费了很长的时间讲述一致性。本文时间有限，就不在此详述了。 （译者：还没读，看完会给大家分享下）
 
-2. **时间工具**：这让我们*超越*batch。
+2. **时间工具**：这让我们 **超越** batch。
 
 当我们处理无穷无序数据时，时间工具是一切的基础。当前，越来越多的需求要求我们处理无穷无序数据，而现有batch系统（包括大多数streaming系统）都缺乏必要的工具去解决这个困难。我会用本文剩下的部分和下一篇文章着重解释它。（译者：无序是难点，大部分分布式系统都不可能提供顺序保证，这里时间工具是指系统提供api，让我们自己控制超时以及如何按时间分块，下面会有详述。）
 
