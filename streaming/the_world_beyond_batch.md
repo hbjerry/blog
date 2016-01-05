@@ -1,11 +1,12 @@
-# The world beyond batch: Streaming 101
+# [译]Streaming如何能打败Batch：（1）Streaming基础知识
 * 作者：Tyler Akidau
 * 译者：张磊（hbjerryzl@gmail.com）
 * 原文：http://radar.oreilly.com/2015/08/the-world-beyond-batch-streaming-101.html
 
-## 序
-(译者：streaming是指streaming引擎，比如：storm，spark streaming等；batch是指批处理引擎，常见的是MapReduce)
+## 译者摘要
+现在大数据，云计算已经成为互联网的标配，但是现在主流的大数据处理依旧是使用batch模式，batch模式就是将数据按某种规则分成块，然后对整个块跑计算逻辑，缺点是延迟太高，最小也是分钟级别，常用的工具就是Hadoop。在日益变化的需求面前，高延迟越来越不能忍受，因此Streaming模式应运而生，他最大的特点就是低延迟，最快能到毫秒级别，常用的Streaming工具主要是storm，spark等，但是这些工具都有各自的优缺点，功能上不能完全取代batch，这篇文章就是想深入分析什么样的Streaming系统能彻底替代batch，并最终打败batch。
 
+## 序
 尽管现在市场上对streaming越来越关注，但是相对于batch来说，大部分streaming系统还不是很成熟，所以streaming系统正处于积极开发和进步中。
 
 作为一个在分布式steaming系统上工作过5年的从业者（MillWeel, Cloud DataFlow）, 我非常荣幸给大家分享streaming系统能解决什么问题，以及batch系统和streaming系统在语义上的区别，这非常重要，会帮助我们更好地使用它。内容众多，我会分成两篇文章来讲述：
@@ -14,6 +15,7 @@
 2. **The Dataflow Model**: 第二篇用一些实际例子讲述Cload Dataflow, 它综合了batch和streaming两种模式。之后，我回总结现有batch和streaming系统在语义上的相同点和不同点。
 
 下面是一篇很长的文章，不要分心。（译者：原文是nerdy，主要指呆滞但是专注的技术宅）
+
 
 ## 背景知识
 本节讲述一些非常重要的背景知识，帮助理解剩下的部分。 
